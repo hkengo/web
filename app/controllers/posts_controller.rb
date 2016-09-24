@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  http_basic_authenticate_with name: "password", password: "password", only: [:new, :edit, :create, :destroy]
   
   def index
     @posts = Post.all
