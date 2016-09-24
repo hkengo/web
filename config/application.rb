@@ -8,6 +8,21 @@ Bundler.require(*Rails.groups)
 
 module BlogWeb
   class Application < Rails::Application
+    config.generators do |g|
+      g.assets false
+      # g.stylesheets false
+      # g.javascripts false
+      g.helper false
+      g.test_framework false
+      # g.test_framework :rspec,
+      #     fixture: true,
+      #     fixture_replacement: :factory_girl,
+      #     view_specs: false,
+      #     routing_specs: false,
+      #     helper_specs: false,
+      #     integration_tool: false
+      # g.fixture_replacement :factory_girl, dir: "spec/support/factories"
+    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
