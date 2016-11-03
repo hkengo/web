@@ -5,9 +5,27 @@
   </p>
   <p>
     <strong>内容：</strong>
-    <%= simple_format @post.content %>
+    <%= @post.content %>
   </p>
 </div>
+
+<h2>コメント</h2>
+<%= render @post.comments %>
+
+<h2>コメントを追加</h2>
+<%= form_for [@post, @post.comments.build] do |f| %>
+  <p>
+    <%= f.label :commenter, 'コメンター' %><br />
+    <%= f.text_field :commenter %>
+  </p>
+  <p>
+    <%= f.label :body, 'コメント' %><br />
+    <%= f.text_field :body, cols: 60, rows: 8 %>
+  </p>
+  <P>
+    <%= f.submit 'コメント投稿' %>
+  </P>
+<%- end %>
 
 <%= link_to '戻る', posts_path %>
 | <%= link_to '編集', edit_post_path(@post) %>
