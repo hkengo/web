@@ -7,13 +7,17 @@ class PostsController < ApplicationController
   end
   
   def show
+    @post = Post.find(params[:id])
   end
   
   def new
+    @title = "新規作成"
     @post = Post.new
   end
   
   def edit
+    @title = "投稿編集"
+    @post = Post.find(params[:id])
     render 'new'
   end
   
@@ -23,14 +27,17 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post
     else
+      @title = "新規投稿"
       render 'new', status: :unprocessable_entity
     end
   end
   
   def update
-    if @post.save
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
       redirect_to @post
     else
+      @title = "投稿編集"
       render 'new', status: :unprocessable_entity
     end
   end
